@@ -8,64 +8,45 @@ const isProtectedRoute = createRouteMatcher([
   "/transaction(.*)",
 ]);
 
-// ArcJet middleware setup
+// Create Arcjet middleware
 const aj = arcjet({
   key: process.env.ARCJET_KEY,
+  // characteristics: ["userId"], // Track based on Clerk userId
   rules: [
-    shield({ mode: "LIVE" }),
+    // Shield protection for content and security
+    shield({
+      mode: "LIVE",
+    }),
     detectBot({
-      mode: "LIVE", // Block bots in live mode
+      mode: "LIVE", // will block requests. Use "DRY_RUN" to log only
       allow: [
-        "CATEGORY:SEARCH_ENGINE", // Allow search engine bots
-        "GO_HTTP", // Allow specific bot for Inngest
+        "CATEGORY:SEARCH_ENGINE", // Google, Bing, etc
+        "GO_HTTP", // For Inngest
+        // See the full list at https://arcjet.com/bot-list
       ],
     }),
   ],
 });
 
-// Clerk middleware for authentication
+// Create base Clerk middleware
 const clerk = clerkMiddleware(async (auth, req) => {
   const { userId } = await auth();
 
-  // Handle protected routes
   if (!userId && isProtectedRoute(req)) {
-    return NextResponse.redirect("/sign-in"); // Redirect unauthenticated users
-  }
-
-  // Check if the user is new and handle accordingly
-  if (userId) {
-    const userExists = await checkUserInDatabase(userId); // Custom function to check DB
-    if (!userExists) {
-      return NextResponse.redirect("/welcome"); // Redirect new users to a welcome page
-    }
+    const { redirectToSignIn } = await auth();
+    return redirectToSignIn();
   }
 
   return NextResponse.next();
 });
 
-// Custom function to check if the user exists in the database
-async function checkUserInDatabase(userId) {
-  try {
-    const response = await fetch(`${process.env.API_BASE_URL}/users/${userId}`);
-    if (response.ok) {
-      const user = await response.json();
-      return Boolean(user); // Return true if user exists
-    }
-    return false;
-  } catch (error) {
-    console.error("Error checking user in database:", error);
-    return false;
-  }
-}
-
-// Combine ArcJet and Clerk middlewares
+// Chain middlewares - ArcJet runs first, then Clerk
 export default createMiddleware(aj, clerk);
 
-// Middleware configuration
 export const config = {
   matcher: [
-    // Exclude static files and Next.js internals
-    "/((?!_next/static|_next/image|favicon.ico).*)",
+    // Skip Next.js internals and all static files, unless found in search params
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest)).*)",
     // Always run for API routes
     "/(api|trpc)(.*)",
   ],
