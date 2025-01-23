@@ -1,17 +1,14 @@
-"use client"
+"use client";
 
-import { useEffect } from "react"
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { PiggyBank, RefreshCcw } from "lucide-react"
+import { useEffect } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { PiggyBank, RefreshCcw } from "lucide-react";
 
-export default function Error({
-  error,
-  reset,
-}) {
+export default function Error({ error, reset }) {
   useEffect(() => {
-    console.error(error)
-  }, [error])
+    console.error(error);
+  }, [error]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-blue-100 to-green-100 p-4">
@@ -24,7 +21,7 @@ export default function Error({
         <h1 className="text-4xl font-bold text-gray-800">Oops! Our Piggy Bank Broke</h1>
 
         <p className="text-xl text-gray-600">
-          Don't worry, your money is safe! We're just having a little technical hiccup.
+          Don&apos;t worry, your money is safe! We&apos;re just having a little technical hiccup.
         </p>
 
         <div className="space-y-4">
@@ -47,6 +44,5 @@ export default function Error({
         </p>
       </div>
     </div>
-  )
+  );
 }
-

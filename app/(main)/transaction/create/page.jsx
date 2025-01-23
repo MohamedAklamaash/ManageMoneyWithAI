@@ -1,8 +1,10 @@
+
 import { getUserAccounts } from "@/actions/dashboard";
 import { defaultCategories } from "@/data/categories";
 import { AddTransactionForm } from "../_components/transaction-form";
 import { getTransaction } from "@/actions/transaction";
 
+// This is now a Server Component
 export default async function AddTransactionPage({ searchParams }) {
   const accounts = await getUserAccounts();
   const editId = searchParams?.edit;

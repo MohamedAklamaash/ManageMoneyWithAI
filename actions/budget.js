@@ -6,7 +6,6 @@ import { revalidatePath } from "next/cache";
 export async function getCurrentBudget(accountId) {
   try {
     const clerk = await currentUser();
-    console.log(clerk);
     
     if (!clerk) {
       throw new Error("Unauthorized")
