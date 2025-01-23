@@ -2,7 +2,7 @@
 
 import aj from "@/lib/arcjet";
 import { db } from "@/lib/prisma";
-import { auth } from "@clerk/nextjs/server";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
 
 const serializeTransaction = (obj) => {
@@ -17,12 +17,14 @@ const serializeTransaction = (obj) => {
 };
 
 export async function getUserAccounts() {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
+  const clerk = await currentUser();
+  if (!clerk) {
+    throw new Error("Unauthorized")
+  }
   const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
+    where: { email: clerk.emailAddresses[0]?.emailAddress },
   });
+
 
   if (!user) {
     throw new Error("User not found");
@@ -52,11 +54,12 @@ export async function getUserAccounts() {
 
 export async function createAccount(data) {
   try {
-    const { userId } = await auth();
-    if (!userId) throw new Error("Unauthorized");
-
+    const clerk = await currentUser();
+    if (!clerk) {
+      throw new Error("Unauthorized")
+    }
     const decision = await aj.protect({
-      userId,
+      userId: clerk.id,
       requested: 1,
     });
 
@@ -66,13 +69,11 @@ export async function createAccount(data) {
       throw new Error("Too many requests. Please try again later.");
     }
 
-    const user = await db.user.findUnique({
-      where: { clerkUserId: userId },
-    });
 
-    if (!user) {
-      throw new Error("User not found");
-    }
+
+    const user = await db.user.findUnique({
+      where: { email: clerk.emailAddresses[0]?.emailAddress },
+    });
 
     const balanceFloat = parseFloat(data.balance);
     if (isNaN(balanceFloat)) {
@@ -109,11 +110,12 @@ export async function createAccount(data) {
 
 
 export async function getDashboardData() {
-  const { userId } = await auth();
-  if (!userId) throw new Error("Unauthorized");
-
+  const clerk = await currentUser();
+  if (!clerk) {
+    throw new Error("Unauthorized")
+  }
   const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
+    where: { email: clerk.emailAddresses[0]?.emailAddress },
   });
 
   if (!user) {

@@ -1,6 +1,6 @@
 "use server";
 
-import { auth } from "@clerk/nextjs/server";
+import { auth,currentUser } from "@clerk/nextjs/server";
 import { db } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -45,13 +45,13 @@ export async function createTransaction(data) {
       throw new Error("Request blocked");
     }
 
-    const user = await db.user.findUnique({
-      where: { clerkUserId: userId },
-    });
-
-    if (!user) {
-      throw new Error("User not found");
+    const clerk = await currentUser();
+    if (!clerk) {
+      throw new Error("Unauthorized")
     }
+    const user = await db.user.findUnique({
+      where: { email: clerk.emailAddresses[0]?.emailAddress },
+    });
 
     const account = await db.account.findUnique({
       where: {
@@ -102,8 +102,12 @@ export async function getTransaction(id) {
   const { userId } = await auth();
   if (!userId) throw new Error("Unauthorized");
 
+  const clerk = await currentUser();
+  if (!clerk) {
+    throw new Error("Unauthorized")
+  }
   const user = await db.user.findUnique({
-    where: { clerkUserId: userId },
+    where: { email: clerk.emailAddresses[0]?.emailAddress },
   });
 
   if (!user) throw new Error("User not found");
@@ -125,8 +129,12 @@ export async function updateTransaction(id, data) {
     const { userId } = await auth();
     if (!userId) throw new Error("Unauthorized");
 
+    const clerk = await currentUser();
+    if (!clerk) {
+      throw new Error("Unauthorized")
+    }
     const user = await db.user.findUnique({
-      where: { clerkUserId: userId },
+      where: { email: clerk.emailAddresses[0]?.emailAddress },
     });
 
     if (!user) throw new Error("User not found");
@@ -196,13 +204,13 @@ export async function updateTransaction(id, data) {
 // Get User Transactions
 export async function getUserTransactions(query = {}) {
   try {
-    const { userId } = await auth();
-    if (!userId) throw new Error("Unauthorized");
-
+    const clerk = await currentUser();
+    if (!clerk) {
+      throw new Error("Unauthorized")
+    }
     const user = await db.user.findUnique({
-      where: { clerkUserId: userId },
+      where: { email: clerk.emailAddresses[0]?.emailAddress },
     });
-
     if (!user) {
       throw new Error("User not found");
     }
