@@ -85,7 +85,7 @@ export const howItWorksData = [
 export const testimonialsData = [
   {
     name: "Laxman",
-    role: "Baby Boy",
+    role: "Data Analyst",
     image: laxmanpic,
     quote:
       "Welth has revolutionized how I manage my business finances. The AI-powered insights have uncovered cost-saving opportunities that I never imagined.",

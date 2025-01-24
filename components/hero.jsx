@@ -29,7 +29,7 @@ const HeroSection = () => {
   return (
     <section className="pt-40 pb-20 px-4">
       <div className="container mx-auto text-center">
-        <h1 className="text-5xl md:text-8xl lg:text-[105px] pb-6 gradient-title">
+        <h1 className="text-xl md:text-6xl pb-6 gradient-title">
           Empower Your Financial Journey <br /> with Cutting-Edge Intelligence
         </h1>
         <p className="text-xl text-gray-600 mb-8 py-10 mx-auto">
