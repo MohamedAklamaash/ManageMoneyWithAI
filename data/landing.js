@@ -3,7 +3,6 @@ import {
   Receipt,
   PieChart,
   CreditCard,
-  Globe,
   Zap,
 } from "lucide-react";
 import laxmanpic from "@/public/laxman.jpg"
@@ -54,11 +53,6 @@ export const featuresData = [
     description: "Easily manage multiple accounts and credit cards from a single platform",
   },
   {
-    icon: <Globe className="h-8 w-8 text-blue-600" />,
-    title: "Multi-Currency Support",
-    description: "Seamlessly handle multiple currencies with real-time exchange rates",
-  },
-  {
     icon: <Zap className="h-8 w-8 text-blue-600" />,
     title: "Automated Financial Insights",
     description: "Receive insightful, automated financial recommendations for optimal management",
@@ -91,7 +85,7 @@ export const howItWorksData = [
 export const testimonialsData = [
   {
     name: "Laxman",
-    role: "Student",
+    role: "Baby Boy",
     image: laxmanpic,
     quote:
       "Welth has revolutionized how I manage my business finances. The AI-powered insights have uncovered cost-saving opportunities that I never imagined.",
