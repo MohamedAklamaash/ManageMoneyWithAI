@@ -21,7 +21,7 @@ export default function Error({ error, reset }) {
         <h1 className="text-4xl font-bold text-gray-800">Oops! Our Piggy Bank Broke</h1>
 
         <p className="text-xl text-gray-600">
-          Don&apos;t worry, your money is safe! We&apos;re just having a little technical hiccup.
+          Don&apos;t worry, your money is safe! We&apos;re just having a little technical hiccup. Try Refreshing out once or send an email if the issue persists!
         </p>
 
         <div className="space-y-4">

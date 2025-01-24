@@ -6,15 +6,17 @@ import {
   Globe,
   Zap,
 } from "lucide-react";
-
+import laxmanpic from "@/public/laxman.jpg"
+import paramapic from "@/public/parama.jpg"
+import arunpic from "@/public/arun.jpg"
 // Stats Data
 export const statsData = [
   {
-    value: "50K+",
+    value: "10+",
     label: "Active Users",
   },
   {
-    value: "$2B+",
+    value: "$10000+",
     label: "Transactions Tracked",
   },
   {
@@ -79,7 +81,7 @@ export const howItWorksData = [
   },
   {
     icon: <PieChart className="h-8 w-8 text-blue-600" />,
-    title: "3. Receive Insights",
+    title: "3. Receive Insights Every Month",
     description:
       "Unlock AI-powered insights and actionable recommendations to optimize your financial decisions",
   },
@@ -88,23 +90,23 @@ export const howItWorksData = [
 // Testimonials Data
 export const testimonialsData = [
   {
-    name: "Aarav Patel",
-    role: "Entrepreneur",
-    image: "https://randomuser.me/api/portraits/men/30.jpg",
+    name: "Laxman",
+    role: "Student",
+    image: laxmanpic,
     quote:
       "Welth has revolutionized how I manage my business finances. The AI-powered insights have uncovered cost-saving opportunities that I never imagined.",
   },
   {
-    name: "Priya Sharma",
-    role: "Freelancer & Consultant",
-    image: "https://randomuser.me/api/portraits/women/70.jpg",
+    name: "ParamaGuru",
+    role: "Freelancer & AI Enthusiast",
+    image: paramapic,
     quote:
       "The receipt scanning feature has saved me countless hours each month. It has simplified my financial tracking, allowing me to focus more on my work and less on manual tasks.",
   },
   {
-    name: "Ravi Kumar",
-    role: "Certified Financial Planner",
-    image: "https://randomuser.me/api/portraits/men/24.jpg",
+    name: "Arun Prakash",
+    role: "Data Scientist",
+    image: arunpic,
     quote:
       "I wholeheartedly recommend Welth to all my clients. Its multi-currency support and comprehensive analytics are perfect for both local and international investors.",
   },
