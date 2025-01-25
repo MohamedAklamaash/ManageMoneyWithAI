@@ -62,6 +62,7 @@ export function CreateAccountDrawer({ children }) {
     if (newAccount) {
       toast.success("Account created successfully");
       reset();
+      window.location.reload()
       setOpen(false);
     }
   }, [newAccount, reset]);

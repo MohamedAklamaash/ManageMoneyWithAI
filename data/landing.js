@@ -88,7 +88,7 @@ export const testimonialsData = [
     role: "Data Analyst",
     image: laxmanpic,
     quote:
-      "Welth has revolutionized how I manage my business finances. The AI-powered insights have uncovered cost-saving opportunities that I never imagined.",
+      "ManageMoney has revolutionized how I manage my business finances. The AI-powered insights have uncovered cost-saving opportunities that I never imagined.",
   },
   {
     name: "ParamaGuru",
@@ -102,6 +102,6 @@ export const testimonialsData = [
     role: "Data Scientist",
     image: arunpic,
     quote:
-      "I wholeheartedly recommend Welth to all my clients. Its multi-currency support and comprehensive analytics are perfect for both local and international investors.",
+      "I wholeheartedly recommend ManageMoneyWithAI to all my clients. Its multi-currency support and comprehensive analytics are perfect for both local and international investors.",
   },
 ];

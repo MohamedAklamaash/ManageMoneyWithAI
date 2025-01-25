@@ -15,7 +15,7 @@ const Header = async () => {
         <Link href="/">
           <Image
             src={"/banner.png"}
-            alt="Welth Logo"
+            alt="Logo"
             width={200}
             height={60}
             className="h-20 max-lg:h-16 w-auto object-cover"
