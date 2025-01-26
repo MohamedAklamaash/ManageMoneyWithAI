@@ -5,7 +5,7 @@ import Link from "next/link";
 import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 import { checkUser } from "@/lib/checkUser";
 import Image from "next/image";
-
+import logo from "@/public/banner.png"
 const Header = async () => {
   await checkUser();
 
@@ -14,7 +14,7 @@ const Header = async () => {
       <nav className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link href="/">
           <Image
-            src={"/banner.png"}
+            src={logo}
             alt="Logo"
             width={200}
             height={60}
