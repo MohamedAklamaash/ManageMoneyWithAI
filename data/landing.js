@@ -31,29 +31,29 @@ export const statsData = [
 // Features Data
 export const featuresData = [
   {
-    icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
+    icon: <BarChart3 className="h-10 w-10" />,
     title: "Advanced Analytics",
     description:
       "Gain in-depth insights into your financial behavior through AI-powered analytics",
   },
   {
-    icon: <Receipt className="h-8 w-8 text-blue-600" />,
+    icon: <Receipt className="h-10 w-10" />,
     title: "Intelligent Receipt Scanner",
     description:
       "Effortlessly extract data from receipts with cutting-edge AI technology",
   },
   {
-    icon: <PieChart className="h-8 w-8 text-blue-600" />,
+    icon: <PieChart className="h-10 w-10" />,
     title: "Smart Budget Planning",
     description: "Build and manage budgets with precision, guided by intelligent recommendations",
   },
   {
-    icon: <CreditCard className="h-8 w-8 text-blue-600" />,
+    icon: <CreditCard className="h-10 w-10" />,
     title: "Multi-Account Integration",
     description: "Easily manage multiple accounts and credit cards from a single platform",
   },
   {
-    icon: <Zap className="h-8 w-8 text-blue-600" />,
+    icon: <Zap className="h-10 w-10" />,
     title: "Automated Financial Insights",
     description: "Receive insightful, automated financial recommendations for optimal management",
   },
@@ -62,19 +62,19 @@ export const featuresData = [
 // How It Works Data
 export const howItWorksData = [
   {
-    icon: <CreditCard className="h-8 w-8 text-blue-600" />,
+    icon: <CreditCard className="h-12 w-12" />,
     title: "1. Set Up Your Account",
     description:
       "Begin your journey in minutes with our simple, secure, and efficient sign-up process",
   },
   {
-    icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
+    icon: <BarChart3 className="h-12 w-12" />,
     title: "2. Track Your Expenditures",
     description:
       "Automatically categorize and track your transactions in real-time with minimal effort",
   },
   {
-    icon: <PieChart className="h-8 w-8 text-blue-600" />,
+    icon: <PieChart className="h-12 w-12" />,
     title: "3. Receive Insights Every Month",
     description:
       "Unlock AI-powered insights and actionable recommendations to optimize your financial decisions",
